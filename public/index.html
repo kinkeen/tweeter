@@ -19,20 +19,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- App JS -->
-    
     <script type="text/javascript" src="/scripts/client.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </head>
 
   <body>
     <!-- Top nav bar (fixed) -->
     <nav>
-      <span>tweeter</span>
       <span class="header">Tweeter</span>
-      <div>
-        <span class="navtext">Write a new tweet</span>
-        <p>≫</p>
-      </div>
-    </nav>
+      <div class="navtext">
+        <a href="#tweetsection" class="arrowicon">
+          <i class="fa fa-angle-double-down "></i>
+        </a>
+        </div>
+      </nav>
 
     <header>
       <div>
@@ -45,18 +45,21 @@
     </header>
 
     <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet">
-        <h2>Compose Tweet</h2>
-        <form class="form-bar" method='POST' action="/tweets/">
+    <main class="container" >
+      <section class="new-tweet" >
+        <div id="error">  
+        </div>
+        <form class="form-bar" id="newtweet" method='POST' action="/tweets/">
           <label for="tweet-text">What are you humming about?</label>
-          <textarea name="text" id="tweet-text"></textarea>
+          <textarea  cols='50' rows='2' name="text" id="tweet-text" maxlength=140></textarea>
           <div class="tweetbutton">
-            <button type="submit">Tweet</button>
-            <output name="counter" class="counter" for="tweet-text">140</output>
+            <button type="submit" id="tweetsubmit">Tweet</button>
+            <output id="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
       </section>
-    </main>
+      <br>
+      <div id="tweets-container"></div>
+     </main>
   </body>
-</html>
+  </html>
