@@ -19,10 +19,7 @@ const createTweetElement = function(tweetData) {
                 </div>
                 <div><p>${tweetData['user'].handle}</p></div>
             </header>
-            <div class="tweet-body">
-                <p>${tweetData['content'].text}</p>
-            </div>
-            <hr class="line">
+            <div class="tweet-body"> ${safeHTML}</div>            <hr class="line">
             <footer class="footer">
                 <p>${tweetData['created_at']}</p>
                 <div>
@@ -33,6 +30,16 @@ const createTweetElement = function(tweetData) {
     
     return tweetArticle;
 };
+
+//handle XSS edge case
+const escape =  function(str) {
+    let p = document.createElement('p');
+    p.appendChild(document.createTextNode(str));
+    return p.innerHTML;
+};
+
+// convert data to safe data
+const safeHTML = `<p>${escape(tweetData['content'].text)}</p>`;
 
  // AJAX POST for submit button
 $(function() {
