@@ -18,6 +18,7 @@ body {
   color: #545149;
   background-color: #f4f1ec;
   font-size: 24px;
+  padding-top: 100px;
 }
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
@@ -28,4 +29,6 @@ body {
   width: 90%;
   align-content: flex-start;
   justify-content: flex-start;
+  flex-direction: column;
+  margin-top: 40px;
 }
