@@ -9,25 +9,29 @@ const renderTweets = function(tweets) {
   
 //creating html element for a tweet
 const createTweetElement = function(tweetData) {
-  // using jquery to create a DOM object
-  const tweetArticle = `
-        <article class="tweet"> 
-            <header>
-                <div class="tweet-icon">
-                    <img class="icon" src=${tweetData['user'].avatars}>
-                    <p>${tweetData['user'].name}</p>
-                </div>
-                <div><p>${tweetData['user'].handle}</p></div>
-            </header>
-            <div class="tweet-body"> ${safeHTML}</div>            <hr class="line">
-            <footer class="footer">
-                <p>${tweetData['created_at']}</p>
-                <div>
-                    <i class="fa fa-flag"></i> <i class="fa fa-retweet"></i> <i class="fa fa-heart"></i>
-                </div>
-            </footer>
-        </article>`;
-    
+    // using jquery to create a DOM object
+
+    // convert data to safe data
+const safeHTML = `<p>${escape(tweetData['content'].text)}</p>`;
+const tweetArticle = `
+    <article class="tweet"> 
+        <header>
+            <div class="tweet-icon">
+                <img class="icon" src=${tweetData['user'].avatars}>
+                <p>${tweetData['user'].name}</p>
+            </div>
+            <div><p>${tweetData['user'].handle}</p></div>
+        </header>
+        <div class="tweet-body"> ${safeHTML}</div>
+        <hr class="line">
+        <footer class="footer">
+            <p>${moment(tweetData['created_at']).fromNow()}</p>
+            <div>
+                <i class="fa fa-flag"></i> <i class="fa fa-retweet"></i> <i class="fa fa-heart"></i>
+            </div>
+        </footer>
+    </article>`;
+
     return tweetArticle;
 };
 
@@ -37,9 +41,6 @@ const escape =  function(str) {
     p.appendChild(document.createTextNode(str));
     return p.innerHTML;
 };
-
-// convert data to safe data
-const safeHTML = `<p>${escape(tweetData['content'].text)}</p>`;
 
  // AJAX POST for submit button
 $(function() {
