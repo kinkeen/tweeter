@@ -34,21 +34,31 @@ const createTweetElement = function(tweetData) {
     return tweetArticle;
 };
 
-  // AJAX POST for submit button
+ // AJAX POST for submit button
 $(function() {
-    const $form = $("#newtweet")
-    $form.submit(function(event) {
+const $form = $("#newtweet");
+$form.submit(function(event)  {
     event.preventDefault();
-    const tweetcontent = $(this).children("#tweet-text")
-    console.log(tweetcontent)
+    const tweetcontent = $(this).children("#tweet-text");
+    if (!tweetcontent.val() || tweetcontent.val() === null) {
+    $("#error").html("Tweet is empty");
+    $("#error").show();
+    } else if (tweetcontent.val().length > 140) {
+    $("#error").html("Too long. Plz rspct our arbitrary limit of 140 chars.");
+    $("#error").show();
+    } else {
+    $("#error").html("");
+    $("#error").hide();
     $.ajax({
         method: 'POST',
         url: "/tweets",
         data: $(this).serialize()
     }).then(res => {
-        console.log(res)
-    })
-    
+        $("textarea").val("");
+        loadTweets();
+        $("#counter").val(140)
+    });
+    }
 });
 
 // function to load tweets from the server

@@ -51,11 +51,11 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
-        <div id="error"> </div>
+        <div id="error" class="error-message" display:none></div>
         <p></p>
         <form class="form-bar" id="newtweet" method='POST' action="/tweets/">
           <label for="tweet-text">What are you humming about?</label>
-          <textarea  cols='50' rows='2' name="text" id="tweet-text" maxlength=140></textarea>
+          <textarea  cols='50' rows='2' name="text" id="tweet-text"></textarea>
           <div class="tweetbutton">
             <button type="submit" id="tweetsubmit">Tweet</button>
             <output id="counter" class="counter" for="tweet-text">140</output>

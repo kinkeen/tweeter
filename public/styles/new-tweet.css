@@ -34,3 +34,8 @@ button {
   align-self: center;
   margin-top: 30px;
 }
+
+.error-message {
+  color: #D8000C;
+  font-weight: bold;
+}
